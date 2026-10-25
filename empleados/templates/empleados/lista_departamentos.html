@@ -7,6 +7,10 @@
 <body>
     <h1>Listado de departamentos</h1>
 
+    <a href="{% url 'empleados:crear_departamento' %}">
+        Agregar departamento
+    </a>
+
     {% if departamentos %}
         <table border="1">
             <thead>
