@@ -18,6 +18,7 @@
                     <th>Código</th>
                     <th>Nombre</th>
                     <th>Descripción</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,11 @@
                         <td>{{ departamento.codigo }}</td>
                         <td>{{ departamento.nombre }}</td>
                         <td>{{ departamento.descripcion }}</td>
+                        <td>
+                            <a href="{% url 'empleados:editar_departamento' departamento.pk %}">
+                                Editar
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
