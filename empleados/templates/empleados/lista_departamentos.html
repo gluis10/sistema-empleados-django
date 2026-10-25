@@ -7,6 +7,14 @@
 <body>
     <h1>Listado de departamentos</h1>
 
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <a href="{% url 'empleados:crear_departamento' %}">
         Agregar departamento
     </a>
@@ -30,6 +38,9 @@
                         <td>
                             <a href="{% url 'empleados:editar_departamento' departamento.pk %}">
                                 Editar
+                            </a>
+                            <a href="{% url 'empleados:eliminar_departamento' departamento.pk %}">
+                                Eliminar
                             </a>
                         </td>
                     </tr>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar departamento</title>
+</head>
+<body>
+    <h1>Eliminar departamento</h1>
+
+    <p>
+        ¿Deseas eliminar el departamento
+        <strong>{{ departamento.nombre }}</strong>?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+
+    <a href="{% url 'empleados:lista_departamentos' %}">
+        Cancelar
+    </a>
+</body>
+</html>
+

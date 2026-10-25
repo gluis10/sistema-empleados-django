@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import DepartamentoForm
 from .models import Departamento
+from django.contrib import messages
+from django.db.models.deletion import ProtectedError
 
 # Create your views here.
 
@@ -55,4 +57,25 @@ def editar_departamento(request, pk):
         },
     )
 
+
+def eliminar_departamento(request, pk):
+    departamento = get_object_or_404(Departamento, pk=pk)
+
+    if request.method == "POST":
+        try:
+            departamento.delete()
+            messages.success(request, "Departamento eliminado correctamente.")
+        except ProtectedError:
+            messages.error(
+                request,
+                "No se puede eliminar el departamento porque tiene empleados asignados.",
+            )
+
+        return redirect("empleados:lista_departamentos")
+
+    return render(
+        request,
+        "empleados/confirmar_eliminacion_departamento.html",
+        {"departamento": departamento},
+    )
 
