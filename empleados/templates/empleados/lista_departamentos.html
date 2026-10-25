@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Departamentos</title>
+</head>
+<body>
+    <h1>Listado de departamentos</h1>
+
+    {% if departamentos %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for departamento in departamentos %}
+                    <tr>
+                        <td>{{ departamento.codigo }}</td>
+                        <td>{{ departamento.nombre }}</td>
+                        <td>{{ departamento.descripcion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No existen departamentos registrados.</p>
+    {% endif %}
+</body>
+</html>
+
