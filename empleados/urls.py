@@ -25,5 +25,9 @@ urlpatterns = [
         views.lista_empleados, 
         name="lista_empleados"
     ),
+    path("empleados/nuevo/", 
+         views.crear_empleado, 
+         name="crear_empleado"
+    ),
 ]
 

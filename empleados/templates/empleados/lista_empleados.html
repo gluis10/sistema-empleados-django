@@ -7,6 +7,10 @@
 <body>
     <h1>Listado de empleados</h1>
 
+    <a href="{% url 'empleados:crear_empleado' %}">
+        Agregar empleado
+    </a>
+
     <a href="{% url 'empleados:lista_departamentos' %}">
         Ver departamentos
     </a>

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import DepartamentoForm
+from .forms import DepartamentoForm, EmpleadoForm
 from .models import Departamento, Empleado
 from django.contrib import messages
 from django.db.models.deletion import ProtectedError
@@ -91,4 +91,25 @@ def lista_empleados(request):
         "empleados/lista_empleados.html",
         {"empleados": empleados},
     )
+
+
+def crear_empleado(request):
+    if request.method == "POST":
+        formulario = EmpleadoForm(request.POST)
+
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("empleados:lista_empleados")
+    else:
+        formulario = EmpleadoForm()
+
+    return render(
+        request,
+        "empleados/formulario_empleado.html",
+        {
+            "formulario": formulario,
+            "titulo": "Crear empleado",
+        },
+    )
+
 
