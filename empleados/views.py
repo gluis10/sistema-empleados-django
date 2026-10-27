@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import DepartamentoForm
-from .models import Departamento
+from .models import Departamento, Empleado
 from django.contrib import messages
 from django.db.models.deletion import ProtectedError
 
@@ -77,5 +77,18 @@ def eliminar_departamento(request, pk):
         request,
         "empleados/confirmar_eliminacion_departamento.html",
         {"departamento": departamento},
+    )
+
+
+def lista_empleados(request):
+    empleados = Empleado.objects.select_related("departamento").order_by(
+        "apellidos",
+        "nombres",
+    )
+
+    return render(
+        request,
+        "empleados/lista_empleados.html",
+        {"empleados": empleados},
     )
 

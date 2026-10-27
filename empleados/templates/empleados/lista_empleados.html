@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+</head>
+<body>
+    <h1>Listado de empleados</h1>
+
+    <a href="{% url 'empleados:lista_departamentos' %}">
+        Ver departamentos
+    </a>
+
+    {% if empleados %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Departamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in empleados %}
+                    <tr>
+                        <td>{{ empleado.codigo }}</td>
+                        <td>{{ empleado.nombres }}</td>
+                        <td>{{ empleado.apellidos }}</td>
+                        <td>{{ empleado.fecha_nacimiento|default:"-" }}</td>
+                        <td>{{ empleado.departamento.nombre }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No existen empleados registrados.</p>
+    {% endif %}
+</body>
+</html>
+
+

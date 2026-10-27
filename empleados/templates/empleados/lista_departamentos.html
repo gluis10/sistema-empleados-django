@@ -7,6 +7,10 @@
 <body>
     <h1>Listado de departamentos</h1>
 
+    <a href="{% url 'empleados:lista_empleados' %}">
+        Ver empleados
+    </a>
+
     {% if messages %}
         <ul>
             {% for message in messages %}
