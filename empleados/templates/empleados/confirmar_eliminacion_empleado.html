@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar empleado</title>
+</head>
+<body>
+    <h1>Eliminar empleado</h1>
+
+    <p>
+        ¿Deseas eliminar a
+        <strong>{{ empleado.nombres }} {{ empleado.apellidos }}</strong>?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+
+    <a href="{% url 'empleados:lista_empleados' %}">
+        Cancelar
+    </a>
+</body>
+</html>

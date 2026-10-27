@@ -33,5 +33,9 @@ urlpatterns = [
         views.editar_empleado,
         name="editar_empleado",
     ),
+    path("empleados/<int:pk>/eliminar/",
+        views.eliminar_empleado,
+        name="eliminar_empleado",
+    ),
 ]
 

@@ -136,3 +136,17 @@ def editar_empleado(request, pk):
     )
 
 
+def eliminar_empleado(request, pk):
+    empleado = get_object_or_404(Empleado, pk=pk)
+
+    if request.method == "POST":
+        empleado.delete()
+        messages.success(request, "Empleado eliminado correctamente.")
+        return redirect("empleados:lista_empleados")
+
+    return render(
+        request,
+        "empleados/confirmar_eliminacion_empleado.html",
+        {"empleado": empleado},
+    )
+
