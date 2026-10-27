@@ -113,3 +113,26 @@ def crear_empleado(request):
     )
 
 
+def editar_empleado(request, pk):
+    empleado = get_object_or_404(Empleado, pk=pk)
+
+    if request.method == "POST":
+        formulario = EmpleadoForm(request.POST, instance=empleado)
+
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("empleados:lista_empleados")
+    else:
+        formulario = EmpleadoForm(instance=empleado)
+
+    return render(
+        request,
+        "empleados/formulario_empleado.html",
+        {
+            "formulario": formulario,
+            "titulo": "Editar empleado",
+            "empleado": empleado,
+        },
+    )
+
+

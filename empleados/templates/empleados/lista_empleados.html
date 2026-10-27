@@ -24,6 +24,7 @@
                     <th>Apellidos</th>
                     <th>Fecha de nacimiento</th>
                     <th>Departamento</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,11 @@
                         <td>{{ empleado.apellidos }}</td>
                         <td>{{ empleado.fecha_nacimiento|default:"-" }}</td>
                         <td>{{ empleado.departamento.nombre }}</td>
+                        <td>
+                            <a href="{% url 'empleados:editar_empleado' empleado.pk %}">
+                                Editar
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -43,5 +49,7 @@
     {% endif %}
 </body>
 </html>
+
+
 
 
