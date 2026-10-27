@@ -5,12 +5,21 @@ from . import views
 app_name = "empleados"
 
 urlpatterns = [
-    path("", views.lista_departamentos, name="lista_departamentos"),
-    path("nuevo/", views.crear_departamento, name="crear_departamento"),
-    path("<int:pk>/editar/", views.editar_departamento, name="editar_departamento"),
-    path("<int:pk>/eliminar/", views.eliminar_departamento, name="eliminar_departamento"),
+    path("departamentos/", views.lista_departamentos, name="lista_departamentos"),
+    path(
+        "departamentos/nuevo/",
+        views.crear_departamento,
+        name="crear_departamento",
+    ),
+    path(
+        "departamentos/<int:pk>/editar/",
+        views.editar_departamento,
+        name="editar_departamento",
+    ),
+    path(
+        "departamentos/<int:pk>/eliminar/",
+        views.eliminar_departamento,
+        name="eliminar_departamento",
+    ),
 ]
-
-
-
 
