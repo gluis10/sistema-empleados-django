@@ -8,7 +8,25 @@ class DepartamentoForm(forms.ModelForm):
         model = Departamento
         fields = ["codigo", "nombre", "descripcion"]
         widgets = {
-            "descripcion": forms.Textarea(attrs={"rows": 3}),
+            "codigo": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Ej. TI",
+                }
+            ),
+            "nombre": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Ej. Tecnología",
+                }
+            ),
+            "descripcion": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 3,
+                    "placeholder": "Descripción opcional",
+                }
+            ),
         }
 
 
