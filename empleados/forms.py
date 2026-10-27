@@ -35,5 +35,28 @@ class EmpleadoForm(forms.ModelForm):
         model = Empleado
         fields = ["nombres", "apellidos", "fecha_nacimiento", "departamento"]
         widgets = {
-            "fecha_nacimiento": forms.DateInput(attrs={"type": "date"}),
+            "nombres": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Ej. Ana",
+                }
+            ),
+            "apellidos": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Ej. López",
+                }
+            ),
+            "fecha_nacimiento": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+            "departamento": forms.Select(
+                attrs={
+                    "class": "form-select",
+                }
+            ),
         }
+

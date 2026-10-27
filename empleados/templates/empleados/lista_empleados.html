@@ -1,66 +1,85 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Empleados</title>
-</head>
-<body>
-    <h1>Listado de empleados</h1>
+{% extends "empleados/base.html" %}
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% block titulo %}Empleados | Sistema de empleados{% endblock %}
 
-    <a href="{% url 'empleados:crear_empleado' %}">
-        Agregar empleado
-    </a>
+{% block contenido %}
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <h1 class="h2 mb-1">Empleados</h1>
+            <p class="text-secondary mb-0">
+                Administra los empleados registrados en el sistema.
+            </p>
+        </div>
 
-    <a href="{% url 'empleados:lista_departamentos' %}">
-        Ver departamentos
-    </a>
+        <a class="btn btn-primary" href="{% url 'empleados:crear_empleado' %}">
+            + Agregar empleado
+        </a>
+    </div>
 
-    {% if empleados %}
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Fecha de nacimiento</th>
-                    <th>Departamento</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for empleado in empleados %}
-                    <tr>
-                        <td>{{ empleado.codigo }}</td>
-                        <td>{{ empleado.nombres }}</td>
-                        <td>{{ empleado.apellidos }}</td>
-                        <td>{{ empleado.fecha_nacimiento|default:"-" }}</td>
-                        <td>{{ empleado.departamento.nombre }}</td>
-                        <td>
-                            <a href="{% url 'empleados:editar_empleado' empleado.pk %}">
-                                Editar
-                            </a>
-                            <a href="{% url 'empleados:eliminar_empleado' empleado.pk %}">
-                                Eliminar
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No existen empleados registrados.</p>
-    {% endif %}
-</body>
-</html>
-
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            {% if empleados %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Código</th>
+                                <th>Empleado</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Departamento</th>
+                                <th class="text-end pe-4">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for empleado in empleados %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <span class="fw-semibold text-dark">
+                                            {{ empleado.codigo }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="fw-semibold">
+                                            {{ empleado.nombres }} {{ empleado.apellidos }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{ empleado.fecha_nacimiento|date:"d/m/Y"|default:"-" }}
+                                    </td>
+                                    <td>{{ empleado.departamento.nombre }}</td>
+                                    <td class="text-end pe-4">
+                                        <a
+                                            class="btn btn-sm btn-outline-primary"
+                                            href="{% url 'empleados:editar_empleado' empleado.pk %}"
+                                        >
+                                            Editar
+                                        </a>
+                                        <a
+                                            class="btn btn-sm btn-outline-danger"
+                                            href="{% url 'empleados:eliminar_empleado' empleado.pk %}"
+                                        >
+                                            Eliminar
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="p-5 text-center">
+                    <h2 class="h5">No existen empleados registrados</h2>
+                    <p class="text-secondary">
+                        Crea el primer empleado para comenzar.
+                    </p>
+                    <a class="btn btn-primary" href="{% url 'empleados:crear_empleado' %}">
+                        Agregar empleado
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
 
 
 
