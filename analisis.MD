@@ -31,6 +31,9 @@ erDiagram
     CENTRO_TRABAJO ||--o{ PLANIFICACION_TRABAJO : asigna
     EMPLEADO ||--o{ ASISTENCIA : registra
     CENTRO_TRABAJO ||--o{ ASISTENCIA : corresponde
+```
+
+### 4.1. Tabla CentroTrabajo
 
 4.1. Tabla CentroTrabajo
 Esta tabla almacenará los lugares donde los empleados pueden desempeñar sus labores.
