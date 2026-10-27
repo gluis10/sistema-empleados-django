@@ -1,24 +1,42 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Eliminar empleado</title>
-</head>
-<body>
-    <h1>Eliminar empleado</h1>
+{% extends "empleados/base.html" %}
 
-    <p>
-        ¿Deseas eliminar a
-        <strong>{{ empleado.nombres }} {{ empleado.apellidos }}</strong>?
-    </p>
+{% block titulo %}Eliminar empleado | Sistema de empleados{% endblock %}
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
-    </form>
+{% block contenido %}
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h1 class="h5 mb-0">Confirmar eliminación</h1>
+                </div>
 
-    <a href="{% url 'empleados:lista_empleados' %}">
-        Cancelar
-    </a>
-</body>
-</html>
+                <div class="card-body p-4 text-center">
+                    <div class="alert alert-warning" role="alert">
+                        Esta acción no se puede deshacer.
+                    </div>
+
+                    <p class="mb-4">
+                        ¿Deseas eliminar a
+                        <strong>{{ empleado.nombres }} {{ empleado.apellidos }}</strong>?
+                    </p>
+
+                    <form method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">
+                            Sí, eliminar empleado
+                        </button>
+                    </form>
+
+                    <a
+                        class="btn btn-outline-secondary"
+                        href="{% url 'empleados:lista_empleados' %}"
+                    >
+                        Cancelar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
