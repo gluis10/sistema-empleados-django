@@ -10,8 +10,8 @@
         rel="stylesheet"
     >
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+<body class="bg-light d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #0a4275;">
         <div class="container">
             <a class="navbar-brand fw-semibold" href="{% url 'empleados:lista_departamentos' %}">
                 Sistema de empleados
@@ -43,12 +43,13 @@
         </div>
     </nav>
 
-    <main class="container py-4">
+    <main class="container py-4 flex-grow-1">
         {% if messages %}
             {% for message in messages %}
                 <div
                     class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show"
                     role="alert"
+                    data-auto-dismiss
                 >
                     {{ message }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -59,7 +60,22 @@
         {% block contenido %}{% endblock %}
     </main>
 
+    <footer class="text-center text-white mt-5" style="background-color: #0a4275;">
+        <div class="text-center py-2 small" style="background-color: rgba(0, 0, 0, 0.2);">
+            © {% now "Y" %} Sistema de empleados · Desarrollado por Tu nombre
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.querySelectorAll("[data-auto-dismiss]").forEach(function (alerta) {
+            setTimeout(function () {
+                bootstrap.Alert.getOrCreateInstance(alerta).close();
+            }, 2000);
+        });
+    </script>
+
 </body>
 </html>
 
